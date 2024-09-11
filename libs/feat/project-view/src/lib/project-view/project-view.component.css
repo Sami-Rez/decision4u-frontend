@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  padding: 50px 100px 0 100px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+mat-card {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 5px;
+}
+
+mat-card-content {
+  font-size: 1rem;
+  padding: 10px;
+}
+
+mat-table {
+  margin-bottom: 20px;
+}

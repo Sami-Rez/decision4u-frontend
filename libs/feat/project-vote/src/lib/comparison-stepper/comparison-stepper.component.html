@@ -1,0 +1,22 @@
+<ng-container *ngIf="criteria.length > 1; else noComparison">
+  <mat-stepper linear #stepper>
+    <mat-step *ngFor="let _ of [].constructor(numberOfSteps); let i = index">
+      <ng-template matStepLabel>{{ criteria[i] }}</ng-template>
+      <h2>Lets compare to {{ criteria[i] }}</h2>
+      <div *ngFor="let comparison of getCurrentComparisons(i); trackBy: trackByFn">
+        <p> {{ comparison.criteria2 }} {{ getImportanceText(comparison.indexes) }} {{ comparison.criteria1 }} </p>
+        <mat-slider min="-4" max="4" step="1">
+          <input matSliderThumb [value]="0" (valueChange)="onSliderChange(comparison.indexes, $event)">
+        </mat-slider>
+      </div>
+      <!-- Conditionally display 'Next' or 'Submit' button -->
+      <button mat-button *ngIf="i < numberOfSteps - 1" matStepperNext>Next</button>
+      <button mat-button *ngIf="i === numberOfSteps - 1" (click)="submitAssessment()">Submit</button>
+    </mat-step>
+  </mat-stepper>
+</ng-container>
+<!-- Alternative content when there are not enough criteria for comparison -->
+<ng-template #noComparison>
+  <h2>At least two criteria are required for comparison.</h2>
+  <p>Please add more criteria to proceed.</p>
+</ng-template>

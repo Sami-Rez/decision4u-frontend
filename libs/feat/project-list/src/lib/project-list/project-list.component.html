@@ -1,0 +1,32 @@
+<h1>Welcome {{ name }}, here are your Projects</h1>
+<mat-list>
+  <h3 mat-subheader>Projects I have CREATED</h3>
+  <mat-list-item *ngFor="let project of createdProjects">
+    <a matLine [routerLink]="['/projects', 'view', project.id]">{{ project.title }}</a>
+  </mat-list-item>
+</mat-list>
+
+<mat-divider></mat-divider>
+
+<mat-list>
+  <h3 mat-subheader>Projects I can VOTE</h3>
+  <mat-list-item *ngFor="let project of invitedProjects">
+    <a matLine [routerLink]="['/projects', 'vote', project.id]">{{ project.title }}</a>
+  </mat-list-item>
+</mat-list>
+
+<mat-divider></mat-divider>
+<mat-list>
+  <h3 mat-subheader>Projects I VOTED</h3>
+  <mat-list-item *ngFor="let project of votedProjects">
+    <a matLine [routerLink]="['/projects', 'view', project.id]">{{ project.title }}</a>
+  </mat-list-item>
+</mat-list>
+
+<mat-divider></mat-divider>
+
+<button mat-raised-button color="primary"
+  [routerLink]="['/projects', 'create']">
+  Create new Project
+</button>
+

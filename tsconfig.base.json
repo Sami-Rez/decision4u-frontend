@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@app/data/auth": ["libs/data/auth/src/index.ts"],
+      "@app/data/project": ["libs/data/project/src/index.ts"],
+      "@app/data/user": ["libs/data/user/src/index.ts"],
+      "@app/feat/auth": ["libs/feat/auth/src/index.ts"],
+      "@app/feat/main": ["libs/feat/main/src/index.ts"],
+      "@app/feat/project-create": ["libs/feat/project-create/src/index.ts"],
+      "@app/feat/project-list": ["libs/feat/project-list/src/index.ts"],
+      "@app/feat/project-view": ["libs/feat/project-view/src/index.ts"],
+      "@app/feat/project-vote": ["libs/feat/project-vote/src/index.ts"],
+      "@app/ui/chip-list": ["libs/ui/chip-list/src/index.ts"],
+      "@app/ui/chip-list-autocomplete": [
+        "libs/ui/chip-list-autocomplete/src/index.ts"
+      ],
+      "@app/ui/strengthbar": ["libs/ui/strengthbar/src/index.ts"],
+      "@app/util": ["libs/util/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

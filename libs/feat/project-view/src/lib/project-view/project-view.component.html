@@ -1,0 +1,38 @@
+  <h1>The current Score Result of the AHP evaluation process</h1>
+  <mat-card>
+    <mat-card-title>{{ project.title }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ project.description }}</p>
+    </mat-card-content>
+  </mat-card>
+
+<ng-container *ngIf="project.scores; else noResultsYet">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="alternative">
+      <mat-header-cell *matHeaderCellDef> Alternative </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.alternative}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="score">
+      <mat-header-cell *matHeaderCellDef> Score </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.score}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-table [dataSource]="criteriaSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="criteria">
+      <mat-header-cell *matHeaderCellDef> Criteria </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.criteria}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="criteriaColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: criteriaColumns;"></mat-row>
+  </mat-table>
+</ng-container>
+
+<ng-template #noResultsYet>
+  <h2>No results yet. The project has not been voted on.</h2>
+</ng-template>

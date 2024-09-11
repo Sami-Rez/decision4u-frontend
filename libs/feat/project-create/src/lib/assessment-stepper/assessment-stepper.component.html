@@ -1,0 +1,15 @@
+<mat-stepper linear #stepper>
+  <mat-step *ngFor="let alternative of alternatives; let altIndex = index">
+    <ng-template matStepLabel>{{alternative}}</ng-template>
+    <div *ngFor="let criterion of criteria; let critIndex = index">
+      <h3>{{criterion}}</h3>
+      <mat-radio-group aria-label="Select a rating" (change)="rate(critIndex, $event.value)">
+        <mat-radio-button *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">
+          {{rating}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+<!--    <button mat-button *ngIf="!isLastStep()" [disabled]="!allCriteriaRated()" (click)="moveToNext()">Next</button>-->
+<!--    <button mat-button *ngIf="isLastStep()" [disabled]="!allStepsCompleted()" (click)="submitAssessment()">Submit</button>-->
+  </mat-step>
+</mat-stepper>

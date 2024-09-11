@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  padding: 50px 100px 0 100px;
+}
+
+mat-divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

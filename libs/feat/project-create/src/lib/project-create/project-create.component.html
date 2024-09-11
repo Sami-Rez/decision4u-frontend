@@ -1,0 +1,72 @@
+<h1>What do you want to assess today ?</h1>
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="project-form">
+  <!-- TITLE -->
+  <mat-form-field appearance="fill" class="project-form-field">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" placeholder="Enter project title">
+    <mat-error *ngIf="projectForm.get('title')?.hasError('required')">
+      Title is required.
+    </mat-error>
+    <mat-error *ngIf="projectForm.get('title')?.hasError('maxLength')">
+      Title cannot be longer than 100 characters.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- DESCRIPTION -->
+  <mat-form-field appearance="fill" class="project-form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" placeholder="Enter project description"></textarea>
+    <mat-error *ngIf="projectForm.get('description')?.hasError('required')">
+      Description is required.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- CHIP LIST for Alternatives -->
+  <lib-chip-list formControlName="alternatives"
+    [label]="'Alternatives'">
+  </lib-chip-list>
+  <mat-error *ngIf="projectForm.get('alternatives')?.touched &&
+      projectForm.get('alternatives')?.hasError('required')">
+    Alternatives are required.
+  </mat-error>
+
+  <!-- CHIP LIST for Criteria -->
+  <lib-chip-list formControlName="criteria"
+     [label]="'Criteria'">
+  </lib-chip-list>
+  <mat-error *ngIf="projectForm.get('criteria')?.touched &&
+      projectForm.get('criteria')?.hasError('required')">
+      Criteria are required.
+  </mat-error>
+
+  <!-- CHIP LIST for Voters -->
+  <lib-chip-list-autocomplete formControlName="voters"
+     [label]="'Provide your Voters'" [allItems]="voters">
+  </lib-chip-list-autocomplete>
+  <mat-error *ngIf="projectForm.get('voters')?.touched &&
+      projectForm.get('voters')?.hasError('required')">
+    Voters are required.
+  </mat-error>
+
+  <ng-container *ngIf="hasEnoughAlternativesAndCriteria(); else notEnoughDataMessage">
+    <ng-container *ngIf="showStepper">
+      <lib-assessment-stepper
+        [alternatives]="updatedAlternatives"
+        [criteria]="updatedCriteria"
+        (change)="onAssessmentChanged($event)">
+      </lib-assessment-stepper>
+    </ng-container>
+  </ng-container>
+  <ng-template #notEnoughDataMessage>
+    <h2>Please add at least 2 alternatives and 2 criteria to proceed with the assessment.</h2>
+  </ng-template>
+
+
+
+  <!-- SUBMIT BUTTON -->
+  <button mat-raised-button color="primary" type="submit"
+      [disabled]="!projectForm.valid || !hasEnoughAlternativesAndCriteria() || !allStepsCompleted()">
+<!--  <button mat-raised-button color="primary" type="submit">-->
+    Create Project
+  </button>
+</form>

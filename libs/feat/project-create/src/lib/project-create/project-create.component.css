@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  padding: 50px 100px 50px 100px;
+}
+
+h1 {
+  margin-bottom: 50px;
+}
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-form-field {
+  margin-bottom: 16px;
+}
+
+mat-error {
+  font-size: 12px;
+  font-weight: lighter;
+  margin-top: -22px;
+  margin-bottom: 18px;
+}
